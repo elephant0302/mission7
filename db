@@ -1,0 +1,117 @@
+CREATE TABLE `user` (
+	`user_id`	BIGINT	NOT NULL,
+	`name`	VARCHAR(255)	NULL,
+	`id`	VARCHAR(255)	NULL,
+	`password`	VARCHAR(255)	NULL,
+	`nickname`	VARCHAR(255)	NULL,
+	`count`	BIGINT	NULL,
+	`gender`	INT	NULL,
+	`birthday`	DATETIME	NULL,
+	`address`	VARCHAR(255)	NULL,
+	`alarm`	BOOLEAN	NULL,
+	`total_point`	BIGINT	NULL,
+	`email`	VARCHAR(255)	NULL
+);
+
+CREATE TABLE `region` (
+	`region_id`	BIGINT	NOT NULL,
+	`name`	VARCHAR(255)	NULL,
+	`address`	VARCHAR(255)	NULL
+);
+
+CREATE TABLE `store` (
+	`store_id`	BIGINT	NOT NULL,
+	`store_name`	VARCHAR(255)	NULL,
+	`price`	BIGINT	NULL,
+	`score`	FLOAT	NULL,
+	`manager_id`	BIGINT	NULL,
+	`region_id`	BIGINT	NOT NULL
+);
+
+CREATE TABLE `review` (
+	`review_id`	BIGINT	NOT NULL,
+	`contents`	VARCHAR(255)	NULL,
+	`created_date`	DATETIME	NULL,
+	`updated_date`	DATETIME	NULL,
+	`status`	BOOLEAN	NULL,
+	`rating`	FLOAT	NULL,
+	`user_id`	BIGINT	NOT NULL,
+	`store_id`	BIGINT	NOT NULL
+);
+
+CREATE TABLE `complain` (
+	`complain_id`	BIGINT	NOT NULL,
+	`title`	VARCHAR(255)	NULL,
+	`content`	TEXT	NULL,
+	`user_id`	BIGINT	NOT NULL
+);
+
+CREATE TABLE `complain_image` (
+	`image_id`	BIGINT	NOT NULL,
+	`url`	TEXT	NULL,
+	`title`	VARCHAR(255)	NULL,
+	`complain_id`	BIGINT	NOT NULL
+);
+
+CREATE TABLE `review_image` (
+	`image_id`	BIGINT	NOT NULL,
+	`url`	TEXT	NULL,
+	`title`	VARCHAR(255)	NULL,
+	`review_id`	BIGINT	NOT NULL
+);
+
+CREATE TABLE `user_mission` (
+	`id`	BIGINT	NOT NULL,
+	`status`	VARCHAR(225)	NULL,
+	`created_at`	DATETIME	NULL,
+	`updated_at`	DATETIME	NULL,
+	`user_id`	BIGINT	NOT NULL,
+	`mission_id`	BIGINT	NOT NULL
+);
+
+CREATE TABLE `mission` (
+	`mission_id`	BIGINT	NOT NULL,
+	`reward`	BIGINT	NULL,
+	`deadline`	INT	NULL,
+	`mission_spec`	TEXT	NULL,
+	`created_at`	DATETIME	NULL,
+	`updated_at`	DATETIME	NULL,
+	`store_id`	BIGINT	NOT NULL
+);
+
+ALTER TABLE `user` ADD CONSTRAINT `PK_USER` PRIMARY KEY (
+	`user_id`
+);
+
+ALTER TABLE `region` ADD CONSTRAINT `PK_REGION` PRIMARY KEY (
+	`region_id`
+);
+
+ALTER TABLE `store` ADD CONSTRAINT `PK_STORE` PRIMARY KEY (
+	`store_id`
+);
+
+ALTER TABLE `review` ADD CONSTRAINT `PK_REVIEW` PRIMARY KEY (
+	`review_id`
+);
+
+ALTER TABLE `complain` ADD CONSTRAINT `PK_COMPLAIN` PRIMARY KEY (
+	`complain_id`
+);
+
+ALTER TABLE `complain_image` ADD CONSTRAINT `PK_COMPLAIN_IMAGE` PRIMARY KEY (
+	`image_id`
+);
+
+ALTER TABLE `review_image` ADD CONSTRAINT `PK_REVIEW_IMAGE` PRIMARY KEY (
+	`image_id`
+);
+
+ALTER TABLE `user_mission` ADD CONSTRAINT `PK_USER_MISSION` PRIMARY KEY (
+	`id`
+);
+
+ALTER TABLE `mission` ADD CONSTRAINT `PK_MISSION` PRIMARY KEY (
+	`mission_id`
+);
+
